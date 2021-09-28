@@ -8,6 +8,8 @@
 
 require 'faker'
 
+Buyer.destroy_all
+Product.destroy_all
 Seller.destroy_all
 
 categories = [
@@ -32,7 +34,7 @@ categories = [
 
     5.times do
         s.products.create(price: rand(250), 
-        description: Faker::Movies::HarryPotter.quote, 
+        description: Faker::Commerce.product_name, 
         category: categories[rand(categories.length)],
         seller_id: s.id
     )
