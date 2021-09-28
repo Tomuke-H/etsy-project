@@ -10,10 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_22_195759) do
+ActiveRecord::Schema.define(version: 2021_09_28_204205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "buyers", force: :cascade do |t|
+    t.string "name"
+    t.float "max_price"
+    t.text "desired_categories"
+    t.bigint "seller_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["seller_id"], name: "index_buyers_on_seller_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.float "price"
+    t.text "description"
+    t.string "category"
+    t.bigint "seller_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["seller_id"], name: "index_products_on_seller_id"
+  end
+
+  create_table "sellers", force: :cascade do |t|
+    t.string "email"
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "things", force: :cascade do |t|
     t.string "name"
@@ -51,4 +78,6 @@ ActiveRecord::Schema.define(version: 2021_09_22_195759) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "buyers", "sellers"
+  add_foreign_key "products", "sellers"
 end
