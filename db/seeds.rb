@@ -7,8 +7,39 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'faker'
-User.destroy_all
-User.create(email:'test@test.com', password:123456, name:'Tester')
 
-Thing.create(name: Faker::Company.name)
-Thing.create(name: Faker::Company.name)
+Seller.destroy_all
+
+categories = [
+    'Food',
+    'Travel',
+    'Entertainment',
+    'Furniture',
+    'Clothes'
+]
+
+10.times do
+    s = Seller.create(name: Faker::Name.name, email: Faker::Internet.email)
+    5.times do
+        num_categories = rand(0..categories.length - 1);
+        s.buyers.create(
+            name: Faker::Name.name, 
+            max_price: rand(300), 
+            desired_categories: categories.sample(num_categories), 
+            seller_id: s.id
+        )
+    end
+
+    5.times do
+        s.products.create(price: rand(250), 
+        description: Faker::Movies::HarryPotter.quote, 
+        category: categories[rand(categories.length)],
+        seller_id: s.id
+    )
+    end
+
+end
+
+puts "Seeded #{Seller.all.size} Sellers"
+puts "Seeded #{Buyer.all.size} Buyers"
+puts "Seeded #{Product.all.size} Products"
