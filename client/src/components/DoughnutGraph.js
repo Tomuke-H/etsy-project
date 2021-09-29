@@ -5,19 +5,24 @@ import { Doughnut } from 'react-chartjs-2'
 const DoughnutGraph = () => {
   const [avgProducts, setAvgProducts] = useState([])
 
-  const colors= ['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green', 
-     'maroon', 'navy', 'orange', 'purple', 'red', 
-    'silver', 'teal', 'white', 'yellow'];
+  const colors= [      
+    'rgba(255, 99, 132, 0.8)',
+    'rgba(54, 162, 235, 0.8)',
+    'rgba(255, 206, 86, 0.8)',
+    'rgba(75, 192, 192, 0.8)',
+    'rgba(153, 102, 255, 0.8)',
+    'rgba(255, 159, 64, 0.8)',
+];
 
 
   const normalizeData = (data) => {
-    let sellers = data.map(d => d.name)
+    let categories = data.map(d => d.category)
     let products = data.map(d=> d.count)
 
 
 
     return { 
-      labels: sellers, 
+      labels: categories, 
       datasets: [{
         label: 'Avg products by seller', 
         data: products,
@@ -40,7 +45,9 @@ const DoughnutGraph = () => {
   }
 
   return (
-    <Doughnut data={avgProducts} />
+    <div style={{width: '70%', height: '70%'}}>
+      <Doughnut data={avgProducts} />
+    </div>
   )
 }
 

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Bar } from 'react-chartjs-2';
+import { Button } from 'semantic-ui-react';
 import DoughnutGraph from '../components/DoughnutGraph';
 
 const backgroundColors = [
@@ -34,6 +35,7 @@ const options = {
 
 const Charts = () => {
   const [avgPrices, setAvgPrices] = useState([])
+  const [toggleGraph, setToggleGraph] = useState(false)
 
   useEffect(()=>{
     getAveragePrice()
@@ -46,7 +48,7 @@ const Charts = () => {
     return { 
       labels: categories, 
       datasets: [{
-        label: 'Avg Price', 
+        label: 'Hide All', 
         data: avgs,
         backgroundColor: backgroundColors,
         borderColor: borderColors,
@@ -66,8 +68,11 @@ const Charts = () => {
   return(
     <div>
       <h1> Charts! </h1>
-      <Bar data={avgPrices} options={options}/>
-      <DoughnutGraph />
+      <Button onClick={()=>setToggleGraph(!toggleGraph)}>Switch Chart</Button>
+      {toggleGraph && <h2>Average Price of Product per Category</h2>}
+      {toggleGraph && <Bar data={avgPrices} options={options}/>}
+      {!toggleGraph && <h2>Number of products by Category</h2>}
+      {!toggleGraph && <DoughnutGraph />}
     </div>
   )
 }
