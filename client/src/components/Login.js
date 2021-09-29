@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { useHistory } from 'react-router';
-import { Button, Form, Input } from 'semantic-ui-react';
+import { Button, Form } from 'semantic-ui-react';
 import { AuthContext } from '../providers/AuthProvider'
 
 const Login = (props) => {

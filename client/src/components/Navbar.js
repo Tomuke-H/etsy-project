@@ -14,7 +14,7 @@ const Navbar = (props) => {
       return (
         <>
         <Link to='/edit_user'>
-          <Menu.Item active={location.pathname == '/edit_user'} >
+          <Menu.Item active={location.pathname === '/edit_user'} >
             Edit User
           </Menu.Item >
         </Link>
@@ -25,12 +25,12 @@ const Navbar = (props) => {
     return (
       <>
         <Link to='/login'>
-          <Menu.Item active={location.pathname == '/login'} >
+          <Menu.Item active={location.pathname === '/login'} >
             Login
           </Menu.Item >
         </Link>
         <Link to='/register'>
-          <Menu.Item active={location.pathname == '/register'} >
+          <Menu.Item active={location.pathname === '/register'} >
             Register
           </Menu.Item >
         </Link>
@@ -41,12 +41,12 @@ const Navbar = (props) => {
   return(
     <Menu>
       <Link to='/'>
-        <Menu.Item active={location.pathname == '/'} >
+        <Menu.Item active={location.pathname === '/'} >
           Home
         </Menu.Item >
       </Link>
       <Link to='/products'>
-        <Menu.Item active={location.pathname == '/products'} >
+        <Menu.Item active={location.pathname === '/products'} >
           Products
         </Menu.Item >
       </Link>
