@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Bar } from 'react-chartjs-2';
+import DoughnutGraph from '../components/DoughnutGraph';
 
 const backgroundColors = [
   'rgba(255, 99, 132, 0.2)',
@@ -42,14 +43,16 @@ const Charts = () => {
     let categories = data.map(d => d.category)
     let avgs = data.map(d=> d.avg)
 
-    console.log(data)
-    return { labels: categories, datasets: [{
-      label: 'Avg Price', 
-      data: avgs,
-      backgroundColor: backgroundColors,
-      borderColor: borderColors,
-      borderWidth: 1
-    }]}
+    return { 
+      labels: categories, 
+      datasets: [{
+        label: 'Avg Price', 
+        data: avgs,
+        backgroundColor: backgroundColors,
+        borderColor: borderColors,
+        borderWidth: 1
+      }]
+    }
   }
 
   const getAveragePrice = async () => {
@@ -64,6 +67,7 @@ const Charts = () => {
     <div>
       <h1> Charts! </h1>
       <Bar data={avgPrices} options={options}/>
+      <DoughnutGraph />
     </div>
   )
 }

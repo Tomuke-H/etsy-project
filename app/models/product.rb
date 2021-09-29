@@ -20,4 +20,11 @@ class Product < ApplicationRecord
     .group('p.category')
   end
 
+  def self.avg_products
+    select('COUNT(*), s.id, s.name')
+    .from('products AS p')
+    .joins('INNER JOIN sellers AS s ON p.seller_id=s.id')
+    .group('s.id')
+  end
+
 end

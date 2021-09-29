@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     get 'things', to: 'things#index'
     get 'products', to: 'products#index'
     get 'avg_price', to: 'products#avg_price'
+    get 'avg_products', to: 'products#avg_products'
   end
   
 end

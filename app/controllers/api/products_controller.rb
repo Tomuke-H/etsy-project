@@ -8,4 +8,8 @@ class Api::ProductsController < ApplicationController
         render json: Product.avg_price_by_category
     end
 
+    def avg_products
+        render json: Product.avg_products
+    end
+
 end
