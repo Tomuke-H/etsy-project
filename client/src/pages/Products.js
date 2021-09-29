@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Table } from 'semantic-ui-react';
+import { Segment, Table } from 'semantic-ui-react';
 
 const sellers = [
     {name: 'Steve',
@@ -113,19 +113,21 @@ const Products = () =>{
         return sellers.map(s => {
            return (
                 <div key={s.id}>
-                    <h1>{s.name}</h1>
-                    <Table celled>
-                        <Table.Header>
-                            <Table.Row>
-                                <Table.HeaderCell>Description</Table.HeaderCell>
-                                <Table.HeaderCell>Price</Table.HeaderCell>
-                                <Table.HeaderCell>Category</Table.HeaderCell>
-                            </Table.Row>
-                        </Table.Header> 
-                        <Table.Body>
-                            {renderProducts(s.products)}
-                        </Table.Body>
-                    </Table>
+                    <Segment>
+                        <h1>{s.name}</h1>
+                        <Table celled>
+                            <Table.Header>
+                                <Table.Row>
+                                    <Table.HeaderCell>Description</Table.HeaderCell>
+                                    <Table.HeaderCell>Price</Table.HeaderCell>
+                                    <Table.HeaderCell>Category</Table.HeaderCell>
+                                </Table.Row>
+                            </Table.Header> 
+                            <Table.Body>
+                                {renderProducts(s.products)}
+                            </Table.Body>
+                        </Table>
+                    </Segment>
                 </div>
             )
         })
