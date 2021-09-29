@@ -20,4 +20,10 @@ class Product < ApplicationRecord
     .group('p.category')
   end
 
+  def self.avg_products
+    select('COUNT(*), category')
+    .from('products')
+    .group('category')
+  end
+
 end

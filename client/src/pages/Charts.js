@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { Bar } from 'react-chartjs-2';
+import { Button } from 'semantic-ui-react';
+import DoughnutGraph from '../components/DoughnutGraph';
 
 const backgroundColors = [
   'rgba(255, 99, 132, 0.2)',
@@ -33,6 +35,7 @@ const options = {
 
 const Charts = () => {
   const [avgPrices, setAvgPrices] = useState([])
+  const [toggleGraph, setToggleGraph] = useState(false)
 
   useEffect(()=>{
     getAveragePrice()
@@ -42,14 +45,16 @@ const Charts = () => {
     let categories = data.map(d => d.category)
     let avgs = data.map(d=> d.avg)
 
-    console.log(data)
-    return { labels: categories, datasets: [{
-      label: 'Avg Price', 
-      data: avgs,
-      backgroundColor: backgroundColors,
-      borderColor: borderColors,
-      borderWidth: 1
-    }]}
+    return { 
+      labels: categories, 
+      datasets: [{
+        label: 'Hide All', 
+        data: avgs,
+        backgroundColor: backgroundColors,
+        borderColor: borderColors,
+        borderWidth: 1
+      }]
+    }
   }
 
   const getAveragePrice = async () => {
@@ -63,7 +68,11 @@ const Charts = () => {
   return(
     <div>
       <h1> Charts! </h1>
-      <Bar data={avgPrices} options={options}/>
+      <Button onClick={()=>setToggleGraph(!toggleGraph)}>Switch Chart</Button>
+      {toggleGraph && <h2>Average Price of Product per Category</h2>}
+      {toggleGraph && <Bar data={avgPrices} options={options}/>}
+      {!toggleGraph && <h2>Number of products by Category</h2>}
+      {!toggleGraph && <DoughnutGraph />}
     </div>
   )
 }
