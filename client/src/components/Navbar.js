@@ -13,24 +13,24 @@ const Navbar = (props) => {
     if (user) {
       return (
         <>
-          <Link to='/edit_user'>
-            <Menu.Item active={location.pathname == '/edit_user'} >
-              Edit User
-            </Menu.Item >
-          </Link>
-          <Menu.Item onClick={() => handleLogout(history)}>Logout</Menu.Item>
+        <Link to='/edit_user'>
+          <Menu.Item active={location.pathname === '/edit_user'} >
+            Edit User
+          </Menu.Item >
+        </Link>
+        <Menu.Item onClick={()=> handleLogout(history)}>Logout</Menu.Item>
         </>
       );
     };
     return (
       <>
         <Link to='/login'>
-          <Menu.Item active={location.pathname == '/login'} >
+          <Menu.Item active={location.pathname === '/login'} >
             Login
           </Menu.Item >
         </Link>
         <Link to='/register'>
-          <Menu.Item active={location.pathname == '/register'} >
+          <Menu.Item active={location.pathname === '/register'} >
             Register
           </Menu.Item >
         </Link>
@@ -41,12 +41,12 @@ const Navbar = (props) => {
   return (
     <Menu>
       <Link to='/'>
-        <Menu.Item active={location.pathname == '/'} >
+        <Menu.Item active={location.pathname === '/'} >
           Home
         </Menu.Item >
       </Link>
       <Link to='/products'>
-        <Menu.Item active={location.pathname == '/products'} >
+        <Menu.Item active={location.pathname === '/products'} >
           Products
         </Menu.Item >
       </Link>
@@ -58,6 +58,11 @@ const Navbar = (props) => {
       <Link to='/findproducts'>
         <Menu.Item active={location.pathname == '/findproducts'} >
           Find Products
+        </Menu.Item>
+      </Link>
+      <Link to='/categories'>
+        <Menu.Item active={location.pathname === '/categories'} >
+          Categories
         </Menu.Item >
       </Link>
       <Menu.Menu position="right">{rightNavItems()}</Menu.Menu>

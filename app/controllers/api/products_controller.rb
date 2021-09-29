@@ -20,4 +20,10 @@ class Api::ProductsController < ApplicationController
         # need to pass city data from front end
         render json: Product.by_seller(params[:seller])
     end
+    def category
+        products = Product.by_category(params[:category])
+        render json: { products: products }
+    end
+
+
 end

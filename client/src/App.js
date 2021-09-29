@@ -11,6 +11,7 @@ import EditUser from './components/EditUser';
 import Products from './pages/Products';
 import Charts from './pages/Charts';
 import FindProducts from './pages/FindProducts';
+import Categories from './pages/Categories';
 
 function App() {
   return (
@@ -19,8 +20,9 @@ function App() {
       <FetchUser>
         <Container>
           <Switch>
-            <Route exact path='/' component={Home}/>
-            <Route exact path='/products' component={Products}/>
+            <ProtectedRoute exact path='/' component={Home}/>
+            <ProtectedRoute exact path='/products' component={Products}/>
+            <ProtectedRoute exact path='/categories' component={Categories}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/findproducts' component={FindProducts} />
             <Route exact path='/register' component={Register}/>

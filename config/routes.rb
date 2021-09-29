@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get 'avg_products', to: 'products#avg_products'
     get 'sellers', to: 'products#sellers'
     get 'sellers/:seller', to: 'products#seller'
+    get 'categories/:category', to: 'products#category'
   end
   
 end
