@@ -9,6 +9,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import FetchUser from './components/FetchUser';
 import EditUser from './components/EditUser';
 import Products from './pages/Products';
+import Categories from './pages/Categories';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Switch>
             <ProtectedRoute exact path='/' component={Home}/>
             <ProtectedRoute exact path='/products' component={Products}/>
+            <ProtectedRoute exact path='/categories' component={Categories}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/>
             <ProtectedRoute exact path='/edit_user' component={EditUser}/>
