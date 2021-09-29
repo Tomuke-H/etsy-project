@@ -17,6 +17,7 @@ export default function FindProducts() {
 
   const handleChange = async (e, { value }) => {
     try {
+      console.log(value)
       let res = await axios.get(`/api/sellers/${value}`);
       console.log(res.data);
       setProducts(res.data);
