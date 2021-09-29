@@ -50,6 +50,11 @@ const Navbar = (props) => {
           Products
         </Menu.Item >
       </Link>
+      <Link to='/charts'>
+        <Menu.Item active={location.pathname == '/charts'} >
+          Charts
+        </Menu.Item >
+      </Link>
       <Menu.Menu position="right">{rightNavItems()}</Menu.Menu>
     </Menu>
   );

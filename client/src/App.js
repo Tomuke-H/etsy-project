@@ -9,6 +9,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import FetchUser from './components/FetchUser';
 import EditUser from './components/EditUser';
 import Products from './pages/Products';
+import Charts from './pages/Charts';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route exact path='/products' component={Products}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/>
+            <Route exact path='/charts' component={Charts}/>
             <ProtectedRoute exact path='/edit_user' component={EditUser}/>
             <Route component={()=><p>react 404 path not found</p>} />
           </Switch>
