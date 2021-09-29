@@ -63,21 +63,37 @@ const sellers = [
 ]
 
 const Products = () =>{
-    // const [products, setProducts] = useState([])
+    const [sellers, setSellers] = useState([])
 
     useEffect(()=>{
         getData();
     },[])
 
     const normalizeData = (data) => {
-        console.log(data)
-        //do something to the data
+        let sellerIds = data.map(d => d.seller_id)
+        let unique_ids = [...new Set(sellerIds)]
+        console.log(unique_ids)
+
+        return unique_ids.map((id) => {
+            let products = data.filter((d) => d.seller_id === id);
+            let { name, email } = products[0];
+            // cleaning up property data so it only includes property data
+            let sellerProducts = products.map((p) => {
+              return {
+                price: p.price,
+                description: p.description,
+                category: p.category,
+                id: p.id,
+              };
+            });
+            return { name, email, products: sellerProducts}
+        })
     }
 
     const getData = async () => {
         try{
             let res = await axios.get('/api/products')
-            normalizeData(res.data)
+            setSellers(normalizeData(res.data))
         }catch (err){
             console.log(err)
         }
