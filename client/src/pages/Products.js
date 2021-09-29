@@ -72,12 +72,10 @@ const Products = () =>{
     const normalizeData = (data) => {
         let sellerIds = data.map(d => d.seller_id)
         let unique_ids = [...new Set(sellerIds)]
-        console.log(unique_ids)
 
         return unique_ids.map((id) => {
             let products = data.filter((d) => d.seller_id === id);
             let { name, email } = products[0];
-            // cleaning up property data so it only includes property data
             let sellerProducts = products.map((p) => {
               return {
                 price: p.price,
