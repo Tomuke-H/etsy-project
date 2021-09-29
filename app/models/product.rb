@@ -14,4 +14,10 @@ class Product < ApplicationRecord
     .order('s.id')
   end
 
+  def self.avg_price_by_category
+    select('CAST(AVG(p.price) AS DECIMAL(10,2)), p.category')
+    .from('products AS p ')
+    .group('p.category')
+  end
+
 end
