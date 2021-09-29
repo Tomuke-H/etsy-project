@@ -3,71 +3,77 @@ import React, { useEffect, useState } from 'react'
 import { Segment, Table } from 'semantic-ui-react';
 
 const sellers = [
-    {name: 'Steve',
-    id:1,
-    products: [
-        {
-            description: 'Something cool',
-            price: 435,
-            category: 'Food'
-        },
-        {
-            description: 'Something else cool',
-            price: 357,
-            category: 'Entertainment'
-        },
-        {
-            description: 'Something super cool',
-            price: 32,
-            category: 'Travel'
-        }
-    ]},
-    {name: 'Frank',
-    id: 2,
-    products: [
-        {
-            description: 'Something cool',
-            price: 435,
-            category: 'Food'
-        },
-        {
-            description: 'Something else cool',
-            price: 357,
-            category: 'Entertainment'
-        },
-        {
-            description: 'Something super cool',
-            price: 32,
-            category: 'Travel'
-        }
-    ]},
-    {name: 'Billy',
-    id: 3,
-    products: [
-        {
-            description: 'Something cool',
-            price: 435,
-            category: 'Food'
-        },
-        {
-            description: 'Something else cool',
-            price: 357,
-            category: 'Entertainment'
-        },
-        {
-            description: 'Something super cool',
-            price: 32,
-            category: 'Travel'
-        }
-    ]}
+    {
+        name: 'Steve',
+        id: 1,
+        products: [
+            {
+                description: 'Something cool',
+                price: 435,
+                category: 'Food'
+            },
+            {
+                description: 'Something else cool',
+                price: 357,
+                category: 'Entertainment'
+            },
+            {
+                description: 'Something super cool',
+                price: 32,
+                category: 'Travel'
+            }
+        ]
+    },
+    {
+        name: 'Frank',
+        id: 2,
+        products: [
+            {
+                description: 'Something cool',
+                price: 435,
+                category: 'Food'
+            },
+            {
+                description: 'Something else cool',
+                price: 357,
+                category: 'Entertainment'
+            },
+            {
+                description: 'Something super cool',
+                price: 32,
+                category: 'Travel'
+            }
+        ]
+    },
+    {
+        name: 'Billy',
+        id: 3,
+        products: [
+            {
+                description: 'Something cool',
+                price: 435,
+                category: 'Food'
+            },
+            {
+                description: 'Something else cool',
+                price: 357,
+                category: 'Entertainment'
+            },
+            {
+                description: 'Something super cool',
+                price: 32,
+                category: 'Travel'
+            }
+        ]
+    }
 ]
 
-const Products = () =>{
+const Products = () => {
     const [sellers, setSellers] = useState([])
 
-    useEffect(()=>{
+    useEffect(() => {
         getData();
-    },[])
+    }, [])
 
     const normalizeData = (data) => {
         let sellerIds = data.map(d => d.seller_id)
@@ -77,22 +83,22 @@ const Products = () =>{
             let products = data.filter((d) => d.seller_id === id);
             let { name, email } = products[0];
             let sellerProducts = products.map((p) => {
-              return {
-                price: p.price,
-                description: p.description,
-                category: p.category,
-                id: p.id,
-              };
+                return {
+                    price: p.price,
+                    description: p.description,
+                    category: p.category,
+                    id: p.id,
+                };
             });
-            return { name, email, products: sellerProducts}
+            return { name, email, products: sellerProducts }
         })
     }
 
     const getData = async () => {
-        try{
+        try {
             let res = await axios.get('/api/products')
             setSellers(normalizeData(res.data))
-        }catch (err){
+        } catch (err) {
             console.log(err)
         }
     }
@@ -111,7 +117,7 @@ const Products = () =>{
 
     const renderList = () => {
         return sellers.map(s => {
-           return (
+            return (
                 <div key={s.id}>
                     <Segment>
                         <h1>{s.name}</h1>
@@ -122,7 +128,7 @@ const Products = () =>{
                                     <Table.HeaderCell>Price</Table.HeaderCell>
                                     <Table.HeaderCell>Category</Table.HeaderCell>
                                 </Table.Row>
-                            </Table.Header> 
+                            </Table.Header>
                             <Table.Body>
                                 {renderProducts(s.products)}
                             </Table.Body>

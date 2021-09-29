@@ -9,6 +9,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import FetchUser from './components/FetchUser';
 import EditUser from './components/EditUser';
 import Products from './pages/Products';
+import FindProducts from './pages/FindProducts';
 
 function App() {
   return (
@@ -17,12 +18,13 @@ function App() {
       <FetchUser>
         <Container>
           <Switch>
-            <Route exact path='/' component={Home}/>
-            <Route exact path='/products' component={Products}/>
-            <Route exact path='/login' component={Login}/>
-            <Route exact path='/register' component={Register}/>
-            <ProtectedRoute exact path='/edit_user' component={EditUser}/>
-            <Route component={()=><p>react 404 path not found</p>} />
+            <Route exact path='/' component={Home} />
+            <Route exact path='/products' component={Products} />
+            <Route exact path='/findproducts' component={FindProducts} />
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/register' component={Register} />
+            <ProtectedRoute exact path='/edit_user' component={EditUser} />
+            <Route component={() => <p>react 404 path not found</p>} />
           </Switch>
         </Container>
       </FetchUser>

@@ -5,22 +5,22 @@ import { AuthContext } from '../providers/AuthProvider'
 
 
 const Navbar = (props) => {
-  const { user, handleLogout} = useContext(AuthContext)
+  const { user, handleLogout } = useContext(AuthContext)
   const history = useHistory();
   const { location } = props;
 
-  const rightNavItems = () =>{
-    if(user){
+  const rightNavItems = () => {
+    if (user) {
       return (
         <>
-        <Link to='/edit_user'>
-          <Menu.Item active={location.pathname == '/edit_user'} >
-            Edit User
-          </Menu.Item >
-        </Link>
-        <Menu.Item onClick={()=> handleLogout(history)}>Logout</Menu.Item>
+          <Link to='/edit_user'>
+            <Menu.Item active={location.pathname == '/edit_user'} >
+              Edit User
+            </Menu.Item >
+          </Link>
+          <Menu.Item onClick={() => handleLogout(history)}>Logout</Menu.Item>
         </>
-      ) ;
+      );
     };
     return (
       <>
@@ -38,7 +38,7 @@ const Navbar = (props) => {
     )
   };
 
-  return(
+  return (
     <Menu>
       <Link to='/'>
         <Menu.Item active={location.pathname == '/'} >
@@ -48,6 +48,11 @@ const Navbar = (props) => {
       <Link to='/products'>
         <Menu.Item active={location.pathname == '/products'} >
           Products
+        </Menu.Item >
+      </Link>
+      <Link to='/findproducts'>
+        <Menu.Item active={location.pathname == '/findproducts'} >
+          Find Products
         </Menu.Item >
       </Link>
       <Menu.Menu position="right">{rightNavItems()}</Menu.Menu>
